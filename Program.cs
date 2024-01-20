@@ -12,6 +12,8 @@ string[] availableAnswers = { "of course", "history", "coffee" };
 
 string[] availableUltimateAnimals = { "unicorn", "dragon", "phoenix" };
 
+string[] menu = { "mocha", "latte", "black" };
+
 Random rng = new Random();
 
 Random ua = new Random();
@@ -139,8 +141,18 @@ while (true)
                 }
                 if (coffeeYesNo == "why not")
                 {
+                    string? coffeeanswer;
                     Console.WriteLine("Menu: ");
-                    Console.ReadLine();
+                    foreach (string coffeeType in menu)
+                    {
+                        Console.Write($"| {coffeeType} | ");
+                    }
+                    Console.WriteLine();
+                    Console.WriteLine("Which coffee do you want?");
+                    coffeeanswer = Console.ReadLine();
+                    Console.WriteLine();
+                    Console.WriteLine($"That's your {coffeeanswer}!");
+                    Console.WriteLine();
                 }
                 else
                 {
@@ -158,9 +170,6 @@ while (true)
         //int answerIndex = Array.IndexOf(availableAnswers, answer);
         //int otherAnswerIndex = (answerIndex + 1) % availableAnswers.Length;
         //string otherAnswer = availableAnswers[otherAnswerIndex];
-
-
-        //tu losowanie ultimate animal i pat pat albo picie kawy - wybór kawy - picie kawy
     }
     else
     {
@@ -169,11 +178,13 @@ while (true)
         {
             Console.WriteLine("But you're also some place before the correct animal!");
             Console.WriteLine("I know it's uselles info!");
+            Console.WriteLine();
         }
         else
         {
             Console.WriteLine("But you're also some place after the correct animal!");
             Console.WriteLine("I know it's uselles info!");
+            Console.WriteLine();
         }
     }
 }

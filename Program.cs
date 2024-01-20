@@ -1,7 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-//zgadywanie zwierząt
-//tablica i rnd
 //przyjmowanie i porównywanie - matematycznie
 //nazwij swego gracza
 //punkty
@@ -10,9 +8,18 @@ using System.Formats.Asn1;
 
 string[] availableAnimals = { "cat", "dog", "goose", "sheep", "horse" };
 
+string[] availableAnswers = { "of course", "history", "coffee" };
+
+string[] availableUltimateAnimals = { "unicorn", "dragon", "phoenix" };
+
 Random rng = new Random();
 
+Random ua = new Random();
+
+
 Console.WriteLine("Quess the animal!");
+Console.WriteLine();
+
 
 while (true)
 {
@@ -27,6 +34,8 @@ while (true)
     string? choosedAnimal;
     Console.WriteLine("Which animal was choosed? Provide animal or write 'end' the game: ");
     string? quessedAnimal = Console.ReadLine()?.ToLower().Trim();
+    Console.WriteLine();
+
 
     int quessedAnimalIndex = Array.IndexOf(availableAnimals, quessedAnimal);
 
@@ -41,7 +50,8 @@ while (true)
 
     string? answer;
 
-    string[] availableAnswers = { "yes", "no", "just a small coffe, please" };
+    string? ultimateAnimal;
+
 
     if (quessedAnimal == "end")
     {
@@ -54,20 +64,103 @@ while (true)
     }
     else if (quessedAnimal == "ultimate animal")
     {
-        Console.WriteLine("You're sure you want this? Write back to come back!");
-        answer = Console.ReadLine();
-        while (!availableAnswers.Contains(answer) && answer != "back")
+        while (true)
         {
-            Console.WriteLine("Really? Why do you even try this? You wanna come back? Write 'back'!");
-            answer = Console.ReadLine()?.ToLower().Trim();
+            Console.WriteLine("You're sure you want this? Write 'back' to come back!");
+            Console.WriteLine("Possible answers: ");
+
+            foreach (string possibleAnswer in availableAnswers)
+            {
+                Console.Write($"| {possibleAnswer} | ");
+            }
+
+            Console.WriteLine();
+
+            int ultimateAnimalIndex = rng.Next(availableUltimateAnimals.Length);
+
+            ultimateAnimal = availableUltimateAnimals[ultimateAnimalIndex];
+
+            string? yesOrNo;
+            string? coffeeYesNo;
+
+            answer = Console.ReadLine();
+            Console.WriteLine();
+
+            while (!availableAnswers.Contains(answer) && answer != "back")
+            {
+                Console.WriteLine("Really? Why do you even try this? Write 'back' to come back!");
+                answer = Console.ReadLine()?.ToLower().Trim();
+                Console.WriteLine();
+
+            }
+
+            if (answer == "of course")
+            {
+                Console.WriteLine($"You can see: {ultimateAnimal} ");
+
+                Console.WriteLine("Do you want to pet it? yes/no");
+                yesOrNo = Console.ReadLine()?.ToLower().Trim();
+                Console.WriteLine();
+
+                while (yesOrNo != "yes" && yesOrNo != "no")
+                {
+                    Console.WriteLine("Really? Why do you even try this?");
+                    yesOrNo = Console.ReadLine()?.ToLower().Trim();
+                    Console.WriteLine();
+                }
+                if (yesOrNo == "yes")
+                {
+                    Console.WriteLine($"The {ultimateAnimal} is happy!");
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine($"The {ultimateAnimal} is sad!");
+                    Console.WriteLine();
+                }
+
+            }
+            else if (answer == "history")
+            {
+                Console.WriteLine("My name is Steve. I don't have idea who I am and who you are. It kinda weird, isn't it? All the story, nothing more.");
+                Console.WriteLine();
+            }
+            else if (answer == "coffee")
+            {
+                Console.WriteLine("Wanna coffee? why not/not today");
+                coffeeYesNo = Console.ReadLine()?.ToLower().Trim();
+                Console.WriteLine();
+
+                while (coffeeYesNo != "why not" && coffeeYesNo != "not today")
+                {
+                    Console.WriteLine("Really? Why do you even try this?");
+                    coffeeYesNo = Console.ReadLine()?.ToLower().Trim();
+                    Console.WriteLine();
+                }
+                if (coffeeYesNo == "why not")
+                {
+                    Console.WriteLine("Menu: ");
+                    Console.ReadLine();
+                }
+                else
+                {
+                    Console.WriteLine("That's ok.");
+                    Console.WriteLine();
+                }
+
+            }
+            if (answer == "back")
+            {
+                break;
+            }
         }
+
+        //int answerIndex = Array.IndexOf(availableAnswers, answer);
+        //int otherAnswerIndex = (answerIndex + 1) % availableAnswers.Length;
+        //string otherAnswer = availableAnswers[otherAnswerIndex];
+
 
         //tu losowanie ultimate animal i pat pat albo picie kawy - wybór kawy - picie kawy
-
-        if (answer == "back")
-        {
-            break;
-        }
     }
     else
     {
@@ -84,3 +177,6 @@ while (true)
         }
     }
 }
+
+Console.WriteLine("Clik anything to end the game...");
+Console.ReadLine();

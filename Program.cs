@@ -24,7 +24,11 @@ string coffeeanswer;
 string yourName = PlayersName("Steven");
 string secondOneName = PlayersName("Steve");
 
-while (true)
+Console.WriteLine("How many quessed to win?");
+string manyWin = Console.ReadLine() ?? string.Empty;
+int winWin = Int32.Parse(manyWin);
+
+while (points < winWin)
 {
     Console.WriteLine("You can choose from: ");
     foreach (string animal in availableAnimals)

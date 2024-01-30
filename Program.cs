@@ -24,7 +24,7 @@ string coffeeanswer;
 string yourName = PlayersName("Steven");
 string secondOneName = PlayersName("Steve");
 
-Console.WriteLine("How many quessed to win? If you want to unlocked secret you have to correctly quessed the animal at least 5 times.");
+Console.WriteLine($"How many quessed to win, {yourName}? If you want to unlocked secret you have to correctly quessed the animal at least 5 times.");
 string manyWin = Console.ReadLine() ?? string.Empty;
 
 bool result = Int32.TryParse(manyWin, out int winWin);
@@ -43,6 +43,8 @@ while (points < winWin)
         Console.Write($"| {animal} | ");
     }
 
+    Console.WriteLine();
+    Console.WriteLine("You can also write 'end' to end the game.");
     Console.WriteLine();
 
     string choosedAnimal;
@@ -223,7 +225,7 @@ string PlayersName(string name)
     string naming = Console.ReadLine()?.Trim() ?? string.Empty;
     if (string.IsNullOrWhiteSpace(naming))
     {
-        return $"Name: {name}";
+        return name;
     }
     else
     {

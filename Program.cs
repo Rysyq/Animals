@@ -26,7 +26,14 @@ string secondOneName = PlayersName("Steve");
 
 Console.WriteLine("How many quessed to win? If you want to unlocked secret you have to correctly quessed the animal at least 5 times.");
 string manyWin = Console.ReadLine() ?? string.Empty;
-int winWin = Int32.Parse(manyWin);
+
+bool result = Int32.TryParse(manyWin, out int winWin);
+if (!result)
+{
+    winWin = 5;
+}
+
+Console.WriteLine();
 
 while (points < winWin)
 {
@@ -39,7 +46,7 @@ while (points < winWin)
     Console.WriteLine();
 
     string choosedAnimal;
-    Console.WriteLine("Which animal was choosed? Provide animal or write 'end' the game: ");
+    
     string quessedAnimal = Console.ReadLine()?.ToLower().Trim() ?? string.Empty;
     Console.WriteLine();
 

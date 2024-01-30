@@ -24,7 +24,7 @@ string coffeeanswer;
 string yourName = PlayersName("Steven");
 string secondOneName = PlayersName("Steve");
 
-Console.WriteLine("How many quessed to win?");
+Console.WriteLine("How many quessed to win? If you want to unlocked secret you have to correctly quessed the animal at least 5 times.");
 string manyWin = Console.ReadLine() ?? string.Empty;
 int winWin = Int32.Parse(manyWin);
 
